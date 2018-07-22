@@ -3,11 +3,13 @@
 <head th:fragment="head">
     <meta charset="UTF-8"/>
     <title th:text="${title}">My Cheese</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
 </head>
 <body>
 <nav th:fragment="navigation">
     <a href="/cheese">List</a>
     <a href="/cheese/add">Add</a>
+    <a href="/cheese/remove">Remove</a>
 </nav>
 <h1></h1>
 </body>

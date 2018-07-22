@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8"/>
-    <title th:text="${title}"></title>
-</head>
+<head th:replace="fragments :: head"></head>
 <body>
+<nav th:replace="fragments :: navigation"></nav>
 <h1 th:text="${title}"></h1>
 <form action="/cheese/add" method="post">
-    <label for="cheese"> Add new cheese
+    <label for="cheeseName">Cheese Name
         <input type="text" name="cheeseName" />
+    <label for="description">Description
+        <input type="text" name="description" />
     </label>
+
     <input type="submit" value="Submit" />
+    </label><span class="error" th:text="${error}"></span>
+
 </form>
 </body>
 </html>

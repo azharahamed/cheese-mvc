@@ -31,11 +31,12 @@ public class CheeseController {
     @RequestMapping(value="add", method = RequestMethod.POST)
     public String processAddCheeseForm(Model model, @RequestParam(required = false) String cheeseName,@RequestParam String description) {
 
-        if(cheeseName == null || !isValid(cheeseName) || cheeseName==""){
+        if(!isValid(cheeseName) || cheeseName == null ||  cheeseName==""){
             model.addAttribute("title","Add Cheese");
             model.addAttribute("error","Sorry! Cheese name is required and accepts only alphabetic character with spaces");
             return "cheese/add";
         }
+        cheeseName = cheeseName.trim();
         if(cheeses.get(cheeseName) != null){
             model.addAttribute("title","Add Cheese");
             model.addAttribute("error","Sorry! " + cheeseName + " Already exists - Duplicate names are not allowed");
@@ -76,12 +77,14 @@ public class CheeseController {
     }
 
     public Boolean isValid(String cheeseName){
-       for(char letter:cheeseName.toCharArray()){
+        cheeseName = cheeseName.trim();
+        if(cheeseName.length() == 0) return false;
+        for(char letter:cheeseName.toCharArray()){
            if((!Character.isLetter(letter)) && (letter != ' ')){
                return false;
            }
-       }
-       return true;
+        }
+        return true;
     }
 
 }

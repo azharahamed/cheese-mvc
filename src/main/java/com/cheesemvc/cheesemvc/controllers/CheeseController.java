@@ -64,11 +64,14 @@ public class CheeseController {
 
     @RequestMapping(value="remove", method = RequestMethod.POST)
     public String processRemoveCheese(Model model, @RequestParam(value="cheeseName", required = false) String[] cheeseNames) {
-        for(String cheeseName:cheeseNames){
-            if(cheeses.get(cheeseName) != null){
-                cheeses.remove(cheeseName);
+        if(cheeseNames != null){
+            for(String cheeseName:cheeseNames){
+                if(cheeses.get(cheeseName) != null){
+                    cheeses.remove(cheeseName);
+                }
             }
         }
+
         return "redirect:/cheese";
     }
 
